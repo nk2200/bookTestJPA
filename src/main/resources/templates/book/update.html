@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+	<h2>Book Update</h2>
+	<hr>
+	<form action="update" method="post">
+		<label>bookid :</label><span th:text="${vo.bookid}"></span><input type="hidden" name="bookid" th:value="${vo.bookid}"><br>
+		<label>bookname :</label><input type="text" name="bookname" th:value="${vo.bookname}"><br>
+		<label>price :</label><input type="text" name="price" th:value="${vo.price}"><br>
+		<label>publisher :</label><input type="text" name="publisher" th:value="${vo.publisher}"><br>
+
+		<input type="submit" value="update"> 
+		<input type="reset" value="reset">
+	</form>
+</body>
+</html>

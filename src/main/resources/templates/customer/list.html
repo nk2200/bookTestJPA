@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Customer List</title>
+<link rel="stylesheet" type="text/css" href="/css/listStyle.css">
+<script type="text/javascript">
+	function confirmDelete(custid){
+		if(confirm("정말 삭제할래요??")){
+			window.location.href="/customer/delete?custid="+custid;
+		}else{
+			e.preventDefault();
+		}
+	}
+</script>
+</head>
+<body>
+	<h2>Customer List</h2>
+	<a id="insertLink" href="/customer/insert">customer register</a>
+	<hr>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>NAME</th>
+				<th>ADDRESS</th>
+				<th>PHONE NUM</th>
+				<th>setting</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="vo:${list}">
+				<td th:text="${vo.custid}"></td>
+				<td><a th:href="@{/customer/detail(custid=${vo.custid})}">
+						<span th:text="${vo.name}"></span>
+				</a></td>
+				<td th:text="${vo.address}"></td>
+				<td th:text="${vo.phone}"></td>
+				<td>
+					<button type="button" id="updateBtn"
+						th:onclick="|location.href='@{/customer/goToUpdate(custid=${vo.custid})}'|">update</button>
+					<button type="button" id="deleteBtn"
+						th:onclick="'confirmDelete(' + ${vo.custid} + ')'">delete</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

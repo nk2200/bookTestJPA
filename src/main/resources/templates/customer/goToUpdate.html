@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+	<h2>Book Update</h2>
+	<hr>
+	<div class="header">정보를 수정해주세요.</div>
+	<br><br>
+	<form action="update" method="post">
+		<label>ID :</label><span th:text="${vo.custid}"></span><input type="hidden" name="custid" th:value="${vo.custid}"><br>
+		<label>NAME :</label><input type="text" name="name" th:value="${vo.name}"><br>
+		<label>ADDRESS :</label><input type="text" name="address" th:value="${vo.address}"><br>
+		<label>PHONE :</label><input type="text" name="phone" th:value="${vo.phone}"><br>
+	
+		<input type="submit" value="update"> 
+		<input type="reset" value="reset">
+	</form>
+</body>
+</html>

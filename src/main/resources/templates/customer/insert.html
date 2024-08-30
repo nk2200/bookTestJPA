@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Customer registration</title>
+<link rel="stylesheet" href="/css/insertStyle.css">
+</head>
+<body>
+	<h2>Customer registration</h2>
+	<hr>
+	<form action="save" method="post">
+		<label>ID : </label>
+		<span th:text="${custid}"></span>
+		<input type="hidden" name="custid" th:value="${custid}"><br><br>
+		<label>NAME : </label><input type="text" name="name"><br>
+		<label>ADDRESS : </label><input type="text" name="address"><br>
+		<label>PHONE : </label><input type="text" name="phone"><br>
+		
+	<input type="submit" value="submit">
+	<input type="reset" value="reset">
+	</form>
+</body>
+</html>

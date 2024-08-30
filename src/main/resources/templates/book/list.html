@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/listStyle.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		let saveSearchColumn = sessionStorage.getItem("searchColumn");
+		
+		$('select[name="searchColumn"]').val(saveSearchColumn);
+		
+		$('input[name="keyword"]').val(sessionStorage.getItem("keyword"));
+		$('select[name="priceRange"]').val(sessionStorage.getItem("priceRange"));
+		
+		//초기 상태로 priceArrange를 숨김
+		$('select[name="priceRange"]').hide().prop('disabled',true);
+		//세션에 남아있는 검색컬럼이 (선택한 검색컬럼이) price일때는 부등호 select를 보여주도록 한다.
+		if(saveSearchColumn=="Price"){
+			$('select[name="priceRange"]').show().prop('disabled',false);
+		}
+		
+		//선택한 검색어 컬럼 상태 유지
+		$("#searchForm").submit(function(){
+			let searchColumn = $('select[name="searchColumn"]').val();
+			let keyword = $('input[name="keyword"]').val();
+			let priceRange = $('select[name="priceRange"]').val();
+			sessionStorage.setItem("searchColumn",searchColumn);
+			sessionStorage.setItem("keyword",keyword);
+			sessionStorage.setItem("priceRange",priceRange);
+			if(searchColumn!="Price"){
+				sessionStorage.removeItem("priceRange");
+			}
+			/* localStorage.setItem("searchColumn",searchColumn); */
+		});
+		
+
+		//Price 선택하면 priceArrange 보이기
+		$('select[name="searchColumn"]').change(function(){
+			$('input[name="keyword"]').val("");
+			
+			console.log($(this).val());
+			if($(this).val()==="Price"){
+				$('select[name="priceRange"]').show().prop('disabled',false);
+
+			}else{
+				//다른 옵션 선택했을경우
+				$('select[name="priceRange"]').hide().prop('disabled',true);
+			}
+		});
+		
+		
+		
+	});
+</script>
+</head>
+<body>
+	<h2>Book List</h2>
+	<a id="insertLink" href="/book/insert.html">register</a>
+	<form action="list" method="get" id="searchForm">
+		<select name="searchColumn">
+			<option value="Bookid">Book id</option>
+			<option value="Bookname">Book Name</option>
+			<option value="Price">Price</option>
+			<option value="Publisher">Publisher</option>
+		</select>&nbsp;
+		<select name="priceRange">
+			<option value="Equals">=</option>
+			<option value="GreaterThan">&gt;</option>
+			<option value="LessThan">&lt;</option>
+			<option value="GreaterThanEqual">&gt;=</option>
+			<option value="LessThanEqual">&lt;=</option>
+		</select>
+		<input type="text" name="keyword">
+		<input type="submit" value="search">
+	</form>
+	<hr>
+	<table border="1">
+		<thead>
+			<tr>
+				<th><a href="/book/list?sname=Bookid">bookid</a></th>
+				<th><a href="/book/list?sname=Bookname">bookname</a></th>
+				<th><a href="/book/list?sname=Price">price</a></th>
+				<th><a href="/book/list?sname=Publisher">publisher</a></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="vo:${list}">
+				<td th:text="${vo.bookid}"></td>
+				<td>
+					<a th:href="@{/book/detail(bookid=${vo.bookid})}">
+					<span th:text="${vo.bookname}"></span>
+					</a>
+				</td>
+				<td th:text="${vo.price}"></td>
+				<td th:text="${vo.publisher}"></td>
+
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

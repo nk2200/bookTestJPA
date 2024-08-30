@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #007bff; /* 파란색 */
+    text-decoration: none;
+}
+
+#insertLink {
+    display: inline-block; /* 인라인 블록으로 변경 */
+    margin: 10px 5px;
+    padding: 7px 10px; /* 작게 설정 */
+    background-color: #007bff; /* 파란색 */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    position: absolute; /* 왼쪽으로 위치 조정 */
+    left: 20px; /* 왼쪽 여백 */
+}
+
+#insertLink:hover {
+    background-color: #0056b3; /* 어두운 파란색 */
+}
+
+label {
+	margin : auto;
+	padding: 10px 15px;
+}
+
+form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input[type="text"],select {
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #007bff; /* 파란색 테두리 */
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+select {
+	width : 150px;
+}
+
+input[type="submit"] {
+    background-color: #007bff; /* 파란색 */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* 어두운 파란색 */
+}
+
+hr {
+    border: 1px solid #ddd; /* 구분선 스타일 */
+    margin: 20px 0; /* 구분선 간격 */
+}
+
+body {
+  padding:1.5em;
+  background: #f5f5f5
+}
+
+table {
+  border: 1px rgb(255, 255, 255) solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 80%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-left:auto; 
+  margin-right:auto;
+}
+
+th {
+  text-align: left;
+}
+  
+thead {
+  font-weight: bold;
+  color: #fff;
+  background: #007bff;
+}
+  
+ td, th {
+  padding: 1em .5em;
+  vertical-align: middle;
+}
+  
+ td {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  background: #fff;
+}
+
+a {
+  color: #73685d;
+  text-decoration: none;
+}
+  
+tbody tr:hover{
+	background-color: #87ceeb;
+}

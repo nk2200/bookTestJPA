@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Customer Detail</title>
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function confirmDelete(custid){
+		if(confirm("정말 삭제할래요??")){
+			window.location.href="/customer/delete?custid="+custid;
+		}else{
+			e.preventDefault();
+		}
+	}
+	
+	$(document).ready(function(){
+		//초기 상태로 모든 input요소 비활성화
+		$("input").prop("disabled",true);
+		$('input[type="text"], input[type="submit"]').prop("disabled",true);
+		$('input[type="text"], input[type="submit"], input[type="reset"]').css("pointer-events","none");//hover기능도 없애기
+		
+		//버튼 클릭 시 입력 활성화
+		$("#activateButton").click(function(){
+			$("input").prop("disabled",false);
+			$('input[type="text"], input[type="submit"]').prop("disabled",false);
+			$('input[type="text"], input[type="submit"], input[type="reset"]').css("pointer-events","");//복원
+		});
+	});
+</script>
+</head>
+<body>
+	<h2>Customer Detail</h2>
+	<hr>
+	Do you want update or delete?<br><br>
+	<button type="button" id="activateButton">update</button>
+	<button type="button" id="deleteBtn" 
+		th:onclick="'confirmDelete(' + ${vo.custid} + ')'">delete</button>
+	<hr>
+		<form action="update" method="post">
+		<label>ID :</label><span th:text="${vo.custid}"></span><input type="hidden" name="custid" th:value="${vo.custid}"><br>
+		<label>NAME :</label><input type="text" name="name" th:value="${vo.name}"><br>
+		<label>ADDRESS :</label><input type="text" name="address" th:value="${vo.address}"><br>
+		<label>PHONE :</label><input type="text" name="phone" th:value="${vo.phone}"><br>
+	
+		<input type="submit" value="submit"> 
+		<input type="reset" value="reset">
+	</form>
+</body>
+</html>

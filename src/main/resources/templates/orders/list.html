@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/listStyle.css">
+</head>
+<body>
+	<h2>Orders List</h2>
+	<a id="insertLink" href="/orders/insert">register</a>
+	<form action="list" method="get">
+	<label>customer name :</label><input type="text" name="keyword">
+	<input type="submit" value="search">
+	</form>
+	<hr>
+	<table border="1" class="table table-hover">
+		<thead>
+			<tr>
+				<th>order ID</th>
+				<th>custmoer ID</th>
+				<th>customer Name</th>
+				<th>Book ID</th>
+				<th>Book Name</th>
+				<th>Book price</th>
+				<th>sale price</th>
+				<th>order date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="vo:${list}">
+				<td th:text="${vo.orderid}"></td>
+				<td th:text="${vo.customer.custid}"></td>
+				<td th:text="${vo.customer.name}"></td>
+				<td th:text="${vo.book.bookid}"></td>
+				<td th:text="${vo.book.bookname}"></td>
+				<td th:text="${vo.book.price}"></td>
+				<td th:text="${vo.saleprice}"></td>
+				<td th:text="${vo.orderdate}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

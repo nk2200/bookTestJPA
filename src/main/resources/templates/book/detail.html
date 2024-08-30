@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
+<script type="text/javascript">
+/* 	$(function(){
+		$("#deleteBtn").click(function(e){
+			let re = confirm("정말 삭제할까요?");
+			if(re==false){
+				e.preventDefault();
+			}
+		});
+	}); */
+
+	function confirmDelete(bookid) {
+		if (confirm("정말 삭제하시겠습니까?")) {
+			window.location.href = '/book/delete?bookid=' + bookid;
+		}else{
+			e.preventDefault();
+		}
+	}
+</script>
+</head>
+<body>
+	<h2>Book Detail</h2>
+	<hr>
+	<label>bookid : </label>
+	<span th:text="${vo.bookid}"></span>
+	<br>
+	<label>bookname : </label>
+	<span th:text="${vo.bookname}"></span>
+	<br>
+	<label>price : </label>
+	<span th:text="${vo.price}"></span>
+	<br>
+	<label>publisher : </label>
+	<span th:text="${vo.publisher}"></span>
+	<br>
+	<hr>
+	<!-- 
+	<a th:href="@{/update(bookid=${vo.bookid})}">update</a>
+	<a th:href="@{/delete(bookid=${vo.bookid})}" th:onclick="'confirmDelete(' + ${vo.bookid} + ')'">delete</a> 
+	-->
+	<button type="button" id="updateBtn" 
+		th:onclick="|location.href='@{/book/update(bookid=${vo.bookid})}'|">update</button>
+	<button type="button" id="deleteBtn" 
+		th:onclick="'confirmDelete(' + ${vo.bookid} + ')'">delete</button>
+</body>
+</html>

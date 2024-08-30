@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/orderInsertStyle.css">
+</head>
+<body>
+	<h2>Order Book</h2>
+	<hr>
+	<form action="save" method="post">
+		<label>order ID</label> <span th:text=${orderid}></span>
+		<input type="hidden" name="orderid" th:value="${orderid}"><br><br> 
+		<label>cust ID</label>
+		<select name="customer.custid">
+			<option value="none">=== 선택 ===</option>
+			<option th:each="cvo:${custList}" th:value="${cvo.custid}" th:text="${cvo.name}">
+			
+		</select><br>
+		<label>book ID</label> 
+		<select name="book.bookid" >
+			<option value="none">=== 선택 ===</option>
+			<option th:each="bvo:${bookList}" th:value="${bvo.bookid}" th:text="${bvo.bookname}">
+		</select><br>
+		<label>sale price</label>
+		<input type="text" name="saleprice">
+		<hr>
+		<input type="submit" value="submit">
+		<input type="reset" value="reset">
+	</form>
+</body>
+</html>
